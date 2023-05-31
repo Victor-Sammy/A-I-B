@@ -3,7 +3,7 @@ import { BsArrowRightShort } from 'react-icons/bs'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { AiOutlineHeart } from 'react-icons/ai'
 import '../../sass/components/_sliders.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Trend = () => {
@@ -13,6 +13,8 @@ const Trend = () => {
   useEffect(() => {
     fetchTrending()
   }, [])
+
+  const navigate = useNavigate()
 
   const fetchTrending = async () => {
     axios.get('/ad/products').then((response) => {
@@ -36,7 +38,9 @@ const Trend = () => {
       <div className='top'>
         <div className='title'>Trending Now</div>
         <div className='btn'>
-          <div className='btn-txt'>See All</div>
+          <div className='btn-txt' onClick={() => navigate(fullListPath)}>
+            See All
+          </div>
           <div className='arr-icon'>
             <BsArrowRightShort />
           </div>

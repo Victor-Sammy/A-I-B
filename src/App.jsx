@@ -12,7 +12,6 @@ import Cart from './pages/cart/Cart'
 import 'react-toastify/dist/ReactToastify.css'
 import ShippingAddress from './pages/checkout/ShippingAddress'
 import SeeAllProfile from './pages/seeAllPages/SeeAllProfile'
-import SeeAllTrends from './pages/seeAllPages/SeeAllTrends'
 import Wallet from './components/wallet/wallet'
 import AddProduct from './pages/addProducts/AddProduct'
 import StoreProfile from './components/store-profile/store-profile'
@@ -35,6 +34,7 @@ import Settings from './pages/settings/Settings'
 import UserSettings from './pages/settings/UserSettings'
 import CreateStore from './pages/settings/CreateStore'
 import OrderSuccessful from './pages/checkout/OrderSuccessful'
+import SeeAll from './pages/seeAll/SeeAll'
 
 function App() {
   axios.defaults.withCredentials = true
@@ -82,7 +82,7 @@ const Wrapper = () => {
           }
         />
         <Route exact path='/seeAllProfile' element={<SeeAllProfile />} />
-        <Route exact path='/seeAllTrends' element={<SeeAllTrends />} />
+        <Route exact path='/seeAll' element={<SeeAll />} />
         <Route
           path='/wallet/:page'
           element={
