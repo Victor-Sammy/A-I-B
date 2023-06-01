@@ -8,6 +8,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { getCart } from '../../Api/cart'
 import { getFullCart } from '../../Api/cart'
 import { client } from '../../Api/Api'
+import { useState } from 'react'
+import OrderSuccessModal from './OrderSuccessModal'
 
 const CartItem = () => {
   const queryClient = useQueryClient()
@@ -35,6 +37,8 @@ const CartItem = () => {
   console.log(cartQuery.isLoading)
   console.log(cartQuery.data)
   const total = cartQuery?.data?.data?.total
+
+  const [openModal, setOpenModal] = useState(false)
 
   if (isError) return <h1>Error Loading Products</h1>
 
@@ -171,10 +175,10 @@ const CartItem = () => {
 
                 <div
                   className='checkout-btn'
-                  onClick={() => navigate('/shipping')}
+                  onClick={() => setOpenModal(true)}
                 >
                   <div className='ck-btn-text'>
-                    <span>Proceed to checkout</span>
+                    <span>Place Order</span>
                   </div>
                   <div className='ck-arrw-icon'>
                     <BsArrowRightShort />
@@ -185,6 +189,15 @@ const CartItem = () => {
           </div>
         </div>
       )}
+      <div>
+        <OrderSuccessModal
+          open={openModal}
+          onClose={() => {
+            setOpenModal(false)
+            navigate('/home')
+          }}
+        />
+      </div>
     </>
   )
 }
